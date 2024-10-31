@@ -1,53 +1,53 @@
-# 📋 Snippets
-Snippets, sometimes also called "canned messages" or "tags", are commonly used messages you can send in Modmail threads with just 1 command.
+# 📋 Extraits
+Les extraits, parfois appelés "messages préenregistrés" ou "tags", sont des messages courants que vous pouvez envoyer dans les fils Modmail avec une seule commande.
 
-![Snippets example](snippets.gif)
+![Exemple d'extraits](snippets.gif)
 
-## View available snippets
-### `!snippets` / `!s <shortcut>`
+## Voir les extraits disponibles
+### `!snippets` / `!s <raccourci>`
 
-To view all available snippets, use the command `!snippets`.
+Pour voir tous les extraits disponibles, utilisez la commande `!snippets`.
 
-To view a specific snippet's text, use the command `!s <shortcut>`.
-For example, to view the text of a snippet called "hi", run `!s hi`.
+Pour voir le texte d'un extrait spécifique, utilisez la commande `!s <raccourci>`.  
+Par exemple, pour voir le texte d'un extrait appelé "hi", exécutez `!s hi`.
 
-## Creating snippets
-### `!s <shortcut> <text>`
+## Création d'extraits
+### `!s <raccourci> <texte>`
 
-#### Example
-To create a snippet called "hi" with the text "Hello, how can we help you?", use the following command:
+#### Exemple
+Pour créer un extrait appelé "hi" avec le texte "Bonjour, comment pouvons-nous vous aider ?", utilisez la commande suivante :
 
-`!s hi Hello, how can we help you?` 
+`!s hi Bonjour, comment pouvons-nous vous aider ?`
 
-## Using snippets
-### `!!shortcut` / `!!!shortcut`
-Inside a Modmail thread, use `!!shortcut` to send a snippet to the user, replacing `shortcut` with the snippet's name.
+## Utilisation des extraits
+### `!!raccourci` / `!!!raccourci`
+Dans un fil Modmail, utilisez `!!raccourci` pour envoyer un extrait à l'utilisateur, en remplaçant `raccourci` par le nom de l'extrait.
 
-To send a snippet anonymously, use `!!!shortcut`.
+Pour envoyer un extrait de manière anonyme, utilisez `!!!raccourci`.
 
-*The prefixes `!!` and `!!!` can be changed with the bot options `snippetPrefix` and `snippetPrefixAnon` respectively.*
+*Les préfixes `!!` et `!!!` peuvent être changés avec les options du bot `snippetPrefix` et `snippetPrefixAnon` respectivement.*
 
-#### Example
-To send a snippet called "hi", use the following command:
+#### Exemple
+Pour envoyer un extrait appelé "hi", utilisez la commande suivante :
 
 `!!hi`
 
-To send that same snippet anonymously, use the following command:
+Pour envoyer ce même extrait de manière anonyme, utilisez la commande suivante :
 
 `!!!hi`
 
-## Editing snippets
-### `!edit_snippet <shortcut> <text>` / `!es <shortcut> <text>`
+## Édition des extraits
+### `!edit_snippet <raccourci> <texte>` / `!es <raccourci> <texte>`
 
-#### Example
-To edit a snippet called "hi" to say "Hello, how are you?", use the following command:
+#### Exemple
+Pour modifier un extrait appelé "hi" pour dire "Bonjour, comment ça va ?", utilisez la commande suivante :
 
-`!es hi Hello, how are you?`
+`!es hi Bonjour, comment ça va ?`
 
-## Deleting snippets
-### `!delete_snippet <shortcut>` / `!ds <shortcut>`
+## Suppression des extraits
+### `!delete_snippet <raccourci>` / `!ds <raccourci>`
 
-#### Example
-To delete a snippet called "hi", use the following command:
+#### Exemple
+Pour supprimer un extrait appelé "hi", utilisez la commande suivante :
 
 `!ds hi`
