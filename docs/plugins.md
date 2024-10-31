@@ -1,36 +1,35 @@
 # 🧩 Plugins
-The bot supports loading external plugins.
+Le bot prend en charge le chargement de plugins externes.
 
-## Specifying plugins to load
-Plugins can be loaded either from local files or NPM. Examples:
+## Spécification des plugins à charger
+Les plugins peuvent être chargés à partir de fichiers locaux ou de NPM. Exemples :
 ```ini
-# Local file
+# Fichier local
 plugins[] = ./path/to/plugin.js
-# NPM package
+# Package NPM
 plugins[] = npm:some-plugin-package
 ```
-Paths to local files are always relative to the bot's folder.
-NPM plugins are automatically installed on bot start-up.
+Les chemins vers les fichiers locaux sont toujours relatifs au dossier du bot. Les plugins NPM sont automatiquement installés au démarrage du bot.
 
-## Creating a plugin
-Plugins are simply `.js` files that export a function that gets called when the plugin is loaded.
+## Création d'un plugin
+Les plugins sont simplement des fichiers `.js` qui exportent une fonction qui est appelée lorsque le plugin est chargé.
 
-For details about the function arguments, see [Plugin API](#plugin-api) below.
+Pour plus de détails sur les arguments de la fonction, consultez [API des plugins](#plugin-api) ci-dessous.
 
-### Example plugin
-This example adds a command `!mycommand` that replies with `"Reply from my custom plugin!"` when the command is used inside a modmail inbox thread channel.
+### Exemple de plugin
+Cet exemple ajoute une commande `!mycommand` qui répond par `"Réponse de mon plugin personnalisé !" ` lorsque la commande est utilisée dans un canal de fil de boîte de réception Modmail.
 ```js
 module.exports = function({ bot, knex, config, commands }) {
   commands.addInboxThreadCommand('mycommand', [], (msg, args, thread) => {
-    thread.replyToUser(msg.member, 'Reply from my custom plugin!');
+    thread.replyToUser(msg.member, 'Réponse de mon plugin personnalisé !');
   });
 }
 ```
 
-(Note the use of [object destructuring](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#Unpacking_fields_from_objects_passed_as_function_parameter) in the function parameters)
+(Remarque sur l'utilisation de [la déstructuration d'objets](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#Unpacking_fields_from_objects_passed_as_function_parameter) dans les paramètres de la fonction)
 
-### Example of a custom attachment storage type
-This example adds a custom type for the `attachmentStorage` option called `"original"` that simply returns the original attachment URL without rehosting it in any way.
+### Exemple d'un type de stockage d'attachement personnalisé
+Cet exemple ajoute un type personnalisé pour l'option `attachmentStorage` appelé `"original"` qui renvoie simplement l'URL de l'attachement d'origine sans le réhéberger de quelque manière que ce soit.
 ```js
 module.exports = function({ attachments }) {
   attachments.addStorageType('original', attachment => {
@@ -38,17 +37,17 @@ module.exports = function({ attachments }) {
   });
 };
 ```
-To use this custom attachment storage type, you would set the `attachmentStorage` config option to `"original"`.
+Pour utiliser ce type de stockage d'attachement personnalisé, vous devez définir l'option de configuration `attachmentStorage` sur `"original"`.
 
-### Example of a custom log storage type
-This example adds a custom type for the `logStorage` option called `"pastebin"` that uploads logs to Pastebin.
+### Exemple d'un type de stockage de journal personnalisé
+Cet exemple ajoute un type personnalisé pour l'option `logStorage` appelé `"pastebin"` qui télécharge les journaux sur Pastebin.
 
 ```js
 module.exports = function({ logs, formatters }) {
   logs.addStorageType('pastebin', {
     async save(thread, threadMessages) {
       const formatLogResult = await formatters.formatLog(thread, threadMessages);
-      const pastebinUrl = await saveToPastebin(formatLogResult); // saveToPastebin is an example function that returns the pastebin URL for the saved log
+      const pastebinUrl = await saveToPastebin(formatLogResult); // saveToPastebin est une fonction d'exemple qui renvoie l'URL pastebin pour le journal sauvegardé
       return { url: pastebinUrl };
     },
 
@@ -59,26 +58,26 @@ module.exports = function({ logs, formatters }) {
 };
 ```
 
-### Plugin API
-The first and only argument to the plugin function is an object with the following properties:
+### API des plugins
+Le premier et unique argument de la fonction du plugin est un objet avec les propriétés suivantes :
 
-| Property | Description |
-| -------- | ----------- |
-| `bot` | [Eris Client instance](https://abal.moe/Eris/docs/Client) |
-| `knex` | [Knex database object](https://knexjs.org/#Builder) |
-| `config` | The loaded config |
-| `commands` | An object with functions to add and manage commands |
-| `attachments` | An object with functions to save attachments and manage attachment storage types |
-| `logs` | An object with functions to get attachment URLs/files and manage log storage types |
-| `hooks` | An object with functions to add *hooks* that are called at specific times, e.g. before a new thread is created |
-| `formats` | An object with functions that allow you to replace the default functions used for formatting messages and logs |
-| `webserver` | An [Express Application object](https://expressjs.com/en/api.html#app) that functions as the bot's web server |
-| `threads` | An object with functions to find and create threads |
-| `displayRoles` | An object with functions to set and get moderators' display roles |
+| Propriété | Description |
+| --------- | ----------- |
+| `bot` | Instance [Eris Client](https://abal.moe/Eris/docs/Client) |
+| `knex` | Objet [Knex database](https://knexjs.org/#Builder) |
+| `config` | La configuration chargée |
+| `commands` | Un objet avec des fonctions pour ajouter et gérer des commandes |
+| `attachments` | Un objet avec des fonctions pour sauvegarder des attachements et gérer les types de stockage d'attachement |
+| `logs` | Un objet avec des fonctions pour obtenir des URLs/fichiers d'attachement et gérer les types de stockage de journaux |
+| `hooks` | Un objet avec des fonctions pour ajouter des *hooks* qui sont appelés à des moments spécifiques, par exemple, avant qu'un nouveau fil soit créé |
+| `formats` | Un objet avec des fonctions qui vous permettent de remplacer les fonctions par défaut utilisées pour formater des messages et des journaux |
+| `webserver` | Un objet [Express Application](https://expressjs.com/en/api.html#app) qui fonctionne comme le serveur web du bot |
+| `threads` | Un objet avec des fonctions pour trouver et créer des fils |
+| `displayRoles` | Un objet avec des fonctions pour définir et obtenir les rôles d'affichage des modérateurs |
 
-See the auto-generated [Plugin API](plugin-api.md) page for details.
+Consultez la page auto-générée [API des plugins](plugin-api.md) pour plus de détails.
 
-## Plugin API stability
-Bot releases may contain changes to the plugin API. Make sure to check the [CHANGELOG](../CHANGELOG.md) before upgrading!
+## Stabilité de l'API des plugins
+Les versions du bot peuvent contenir des changements dans l'API des plugins. Assurez-vous de vérifier le [CHANGELOG](../CHANGELOG.md) avant de mettre à jour !
 
-Please send any feature suggestions to the [issue tracker](https://github.com/Dragory/modmailbot/issues)!
+Veuillez envoyer toutes les suggestions de fonctionnalités au [suivi des problèmes](https://github.com/Dragory/modmailbot/issues) !
