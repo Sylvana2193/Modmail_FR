@@ -1,59 +1,53 @@
-# 🛠️ Setting up the bot
-**Note:** This bot is run on your own machine or a server.  
-To keep it online, you need to keep the bot process running.
+# 🛠️ Configuration du bot
+**Remarque :** Ce bot fonctionne sur votre propre machine ou un serveur.  
+Pour le maintenir en ligne, vous devez garder le processus du bot en cours d'exécution.
 
-## Terminology
-* **Main server** (or main guild) is the server where users will be contacting modmail from
-* **Inbox server** (or inbox guild, or mail guild) is the server where modmail threads will be created.
-  In a "single-server setup" this is the same server as the main server.
-* A **modmail thread** is a channel on the **inbox server** that contains the current exchange with the **user**.
-  These threads can be closed to archive them. One **user** can only have 1 modmail thread open at once.
-* A **moderator**, in modmail's context, is a server staff member who responds to and manages modmail threads
-* A **user**, in modmail's context, is a Discord user who is contacting modmail by DMing the bot
+## Terminologie
+* **Serveur principal** (ou guilde principale) est le serveur depuis lequel les utilisateurs contacteront modmail.
+* **Serveur de réception** (ou guilde de réception, ou guilde de mail) est le serveur où les fils de discussion modmail seront créés. Dans une "configuration à serveur unique", il s'agit du même serveur que le serveur principal.
+* Un **fil de discussion modmail** est un canal sur le **serveur de réception** qui contient l'échange actuel avec l'**utilisateur**. Ces fils peuvent être fermés pour les archiver. Un **utilisateur** ne peut avoir qu'un seul fil de discussion modmail ouvert à la fois.
+* Un **modérateur**, dans le contexte de modmail, est un membre du personnel du serveur qui répond et gère les fils de discussion modmail.
+* Un **utilisateur**, dans le contexte de modmail, est un utilisateur Discord qui contacte modmail en DMant le bot.
 
-## Prerequisites
-1. Create a bot on the [Discord Developer Portal](https://discord.com/developers/)
-2. Turn on **Server Members Intent** and **Message Content Intent** in the bot's settings page on the developer portal ([Image](intents.png))
-3. Install Node.js 18 (LTS) or higher
-4. [Download the latest bot release here](https://github.com/Dragory/modmailbot/releases/latest) (click on "Source code (zip)")
-5. Extract the downloaded Zip file to a new folder
-6. In the bot's folder (that you extracted from the zip file), make a copy of the file `config.example.ini` and rename the copy to `config.ini`
-    * If you're on Windows, the file may be named `config.example` (without `.ini` at the end)
+## Prérequis
+1. Créez un bot sur le [Portail des développeurs Discord](https://discord.com/developers/)
+2. Activez **Server Members Intent** et **Message Content Intent** dans la page de paramètres du bot sur le portail des développeurs ([Image](intents.png))
+3. Installez Node.js 18 (LTS) ou supérieur
+4. [Téléchargez la dernière version du bot ici](https://github.com/Dragory/modmailbot/releases/latest) (cliquez sur "Code source (zip)")
+5. Extrayez le fichier Zip téléchargé dans un nouveau dossier
+6. Dans le dossier du bot (celui que vous avez extrait du fichier zip), faites une copie du fichier `config.example.ini` et renommez la copie en `config.ini`
+    * Si vous êtes sous Windows, le fichier peut s'appeler `config.example` (sans `.ini` à la fin)
 
-## Single-server setup
-In this setup, modmail threads are opened on the main server in a special category.
-This is the recommended setup for small and medium sized servers.
+## Configuration à serveur unique
+Dans cette configuration, les fils de discussion modmail s'ouvrent sur le serveur principal dans une catégorie spéciale. C'est la configuration recommandée pour les petits et moyens serveurs.
 
-1. **Go through the [prerequisites](#prerequisites) above first!**
-2. Open `config.ini` in a text editor and fill in the required values. `mainServerId` and `inboxServerId` should both be set to your server's id.
-3. Invite the bot to the server
-4. On a new line at the end of `config.ini`, add `categoryAutomation.newThread = CATEGORY_ID_HERE`
-    * Replace `CATEGORY_ID_HERE` with the ID of the category where new modmail threads should go
-5. Make sure the bot has `Manage Channels`, `Manage Messages`, and `Attach Files` permissions in the category
-    * It is not recommended to give the bot Administrator permissions under *any* circumstances
-6. **[🏃 Start the bot!](starting-the-bot.md)**
-7. Want to change other bot options? See **[📝 Configuration](configuration.md)**
-8. Have any other questions? Check out the **[🙋 Frequently Asked Questions](faq.md)** or
-   **[join the support server!](../README.md#support-server)**
+1. **Commencez par passer par les [prérequis](#prérequis) ci-dessus !**
+2. Ouvrez `config.ini` dans un éditeur de texte et remplissez les valeurs requises. `mainServerId` et `inboxServerId` doivent tous deux être définis sur l'ID de votre serveur.
+3. Invitez le bot sur le serveur.
+4. À une nouvelle ligne à la fin de `config.ini`, ajoutez `categoryAutomation.newThread = CATEGORY_ID_HERE`
+    * Remplacez `CATEGORY_ID_HERE` par l'ID de la catégorie où les nouveaux fils de discussion modmail doivent aller.
+5. Assurez-vous que le bot dispose des permissions `Gérer les canaux`, `Gérer les messages` et `Joindre des fichiers` dans la catégorie.
+    * Il n'est pas recommandé de donner au bot des permissions d'administrateur dans *aucune* circonstance.
+6. **[🏃 Démarrez le bot !](starting-the-bot.md)**
+7. Vous souhaitez modifier d'autres options du bot ? Consultez **[📝 Configuration](configuration.md)**
+8. Vous avez d'autres questions ? Consultez les **[🙋 Questions fréquentes](faq.md)** ou
+   **[rejoignez le serveur d'assistance !](../README.md#serveur-dassistance)**
 
-## Two-server setup
-In this setup, modmail threads are opened on a separate inbox server.
-This is the recommended setup for large servers that get a lot of modmails, where a single-server setup could get messy.
-You might also want this setup for privacy concerns*.
+## Configuration à deux serveurs
+Dans cette configuration, les fils de discussion modmail s'ouvrent sur un serveur de réception séparé. C'est la configuration recommandée pour les grands serveurs qui reçoivent beaucoup de modmails, où une configuration à serveur unique pourrait devenir désordonnée. Vous pourriez également vouloir cette configuration pour des raisons de confidentialité*.
 
-1. **Go through the [prerequisites](#prerequisites) above first!**
-2. Create an inbox server on Discord
-3. Open `config.ini` in a text editor and fill in the required values
-    * Set `mainServerId` to the ID of the *main* server where users will message the bot from
-    * Set `inboxServerId` to the ID of the *inbox* server created in step 2
-4. Invite the bot to both the main server and the newly-created inbox server
-5. Open `config.ini` in a text editor and fill in the values
-6. Make sure the bot has the `Manage Channels`, `Manage Messages`, and `Attach Files` permissions on the **inbox** server
-    * The bot does not need any permissions on the main server
-7. **[🏃 Start the bot!](starting-the-bot.md)**
-8. Want to change other bot options? See **[📝 Configuration](configuration.md)**
-9. Have any other questions? Check out the **[🙋 Frequently Asked Questions](faq.md)** or
-   **[join the support server!](../README.md#support-server)**
+1. **Commencez par passer par les [prérequis](#prérequis) ci-dessus !**
+2. Créez un serveur de réception sur Discord.
+3. Ouvrez `config.ini` dans un éditeur de texte et remplissez les valeurs requises.
+    * Définissez `mainServerId` sur l'ID du serveur *principal* d'où les utilisateurs enverront des messages au bot.
+    * Définissez `inboxServerId` sur l'ID du serveur *de réception* créé à l'étape 2.
+4. Invitez le bot sur le serveur principal et le nouveau serveur de réception créé.
+5. Ouvrez `config.ini` dans un éditeur de texte et remplissez les valeurs.
+6. Assurez-vous que le bot dispose des permissions `Gérer les canaux`, `Gérer les messages` et `Joindre des fichiers` sur le **serveur de réception**.
+    * Le bot n'a besoin d'aucune permission sur le serveur principal.
+7. **[🏃 Démarrez le bot !](starting-the-bot.md)**
+8. Vous souhaitez modifier d'autres options du bot ? Consultez **[📝 Configuration](configuration.md)**
+9. Vous avez d'autres questions ? Consultez les **[🙋 Questions fréquentes](faq.md)** ou
+   **[rejoignez le serveur d'assistance !](../README.md#serveur-dassistance)**
 
-*\* Since all channel names, even for channels you can't see, are public information through the API, a user with a
-modified client could see the names of all users contacting modmail through the modmail channel names.* 
+*\* Comme tous les noms de canaux, même pour les canaux que vous ne pouvez pas voir, sont des informations publiques via l'API, un utilisateur avec un client modifié pourrait voir les noms de tous les utilisateurs contactant modmail à travers les noms de canaux modmail.*
