@@ -3,7 +3,7 @@ Ce projet est une adaptation et une traduction française du projet [modmail de 
 
 👉 Si vous avez besoins d'aide vous pouvez me contacter ici : https://discord.gg/k5RZQRbdZ7 ou en m'ajoutant en amis sur discord : sylvana.
 
-❗ Attention si vous téléchargé la dérnière version de Dragory vous n'aurez pas la traductions
+❗ Attention si vous téléchargez la dérnière version de Dragory vous n'aurez pas la traductions
 
 __Sur votre discord :__
 Je vous conseil la création d'un rôle pour la gestion des tickets, d'un salon pour l'ouverture des tickets, d'un salon aide commande, d'une catégorie pour les nouveaux tickets et d'un salon logs pour l'enregistrement des tickets 
