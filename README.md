@@ -1,7 +1,7 @@
 # Avant de commencer 
 Ce projet est une adaptation et une traduction française du projet [modmail de Dragory](https://github.com/Dragory/modmailbot). En aucun cas je ne m'appropris le projet je propose uniquement un support français 
 
-👉 Si vous avez besoins d'aide vous pouvez me contacter ici : https://discord.gg/k5RZQRbdZ7 ou en m'ajoutant en amis sur discord : sylvana.
+👉 Si vous avez besoins d'aide vous pouvez me contacter ici : https://discord.gg/w77FNUf9 ou en m'ajoutant en amis sur discord : sylvana.
 
 ❗ Attention si vous téléchargez la dérnière version de Dragory vous n'aurez pas la traductions
 
