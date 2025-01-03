@@ -3,8 +3,8 @@
 Pour le maintenir en ligne, vous devez garder le processus du bot en cours d'exécution.
 
 ## Terminologie
-* **Serveur principal** (ou guilde principale) est le serveur depuis lequel les utilisateurs contacteront modmail.
-* **Serveur de réception** (ou guilde de réception, ou guilde de mail) est le serveur où les fils de discussion modmail seront créés. Dans une "configuration à serveur unique", il s'agit du même serveur que le serveur principal.
+* **Serveur principal** (ou guilde principale) est le serveur depuis lequel les utilisateurs contacteront modmail par mp.
+* **Serveur de réception** (ou guilde de réception, ou guilde de mail) est le serveur où les tickets de discussion modmail seront créés. Dans une "configuration à serveur unique", il s'agit du même serveur que le serveur principal (attention si un autre bot utilise les commandes via ! cela peut créer des confusions dans ce cas n'hésitez pas à modifier l'appel des commandes).
 * Un **fil de discussion modmail** est un canal sur le **serveur de réception** qui contient l'échange actuel avec l'**utilisateur**. Ces fils peuvent être fermés pour les archiver. Un **utilisateur** ne peut avoir qu'un seul fil de discussion modmail ouvert à la fois.
 * Un **modérateur**, dans le contexte de modmail, est un membre du personnel du serveur qui répond et gère les fils de discussion modmail.
 * Un **utilisateur**, dans le contexte de modmail, est un utilisateur Discord qui contacte modmail en DMant le bot.
